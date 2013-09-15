@@ -9,23 +9,26 @@
         android:targetSdkVersion="15" />
     
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.roadpress.MainActivity"
+            android:name="com.roadpress.IntroActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.roadpress.trafficinfo.activity.TrafficInfoActivity">
-            
+
+        <activity android:name="com.roadpress.MainActivity" >
+        </activity>
+        <activity android:name="com.roadpress.DbActivity">
+        </activity>
+        <activity android:name="com.roadpress.TrafficInfoActivity">
         </activity>
     </application>
 

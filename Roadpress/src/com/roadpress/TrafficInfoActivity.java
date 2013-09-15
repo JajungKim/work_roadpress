@@ -1,4 +1,4 @@
-package com.roadpress.trafficinfo.activity;
+package com.roadpress;
 
 import java.net.URL;
 import java.util.ArrayList;
