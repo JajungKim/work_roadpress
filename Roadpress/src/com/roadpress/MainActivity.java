@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 			case R.id.button1: 
 				// 교통정보 API
 				pageName = "교통정보API";
-//				intent.setClass(mContext, TrafficInfoActivity.class);
+				intent.setClass(mContext, TrafficInfoActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.button2:

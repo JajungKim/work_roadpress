@@ -1,27 +1,25 @@
 package com.roadpress;
 
-import java.net.URL;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserFactory;
+import java.util.Map;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.roadpress.R;
-import com.roadpress.trafficinfo.vo.TrafficInfoVO;
+import com.roadpress.manager.TrafficInfoXmlManager;
+import com.roadpress.manager.XmlManager;
 
 public class TrafficInfoActivity extends Activity {
-	
-	static final String TAG = "TrafficInfoActivity";
-	
 	private Button button01;
+	private XmlManager xmlManager;
+	Map<String, String> param = new HashMap<String, String>();
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,12 +28,43 @@ public class TrafficInfoActivity extends Activity {
 		button01 = (Button) findViewById(R.id.button01);
 		button01.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				Thread thread = new Thread(new XmlParser());
-				thread.start();
+				//MinX=126.800000&MaxX=127.890000&MinY=34.900000&MaxY=35.100000
+				param.clear();
+				param.put("MinX", "126.800000");
+				param.put("MaxX", "127.890000");
+				param.put("MinY", "34.900000");
+				param.put("MaxY", "35.100000");
+				xmlManager = new TrafficInfoXmlManager(param, handler);
+				try {
+					xmlManager.parsing();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+					
 			}
 		});
 	}
 	
+	Handler handler = new Handler() {
+		public void handleMessage(Message msg) { 
+			List<Map<String, String>> getDataList = xmlManager.getDataList();
+			Log.d("Data List Size", "" + getDataList.size()); 
+			for(int i = 0; i < getDataList.size(); i++) {
+				Map<String,String> data = getDataList.get(i);
+				Log.d("============" + (i + 1)+ "==========", "START>>>>>>>>>>>>>>>>>>>>");
+				Log.d("XML Parsing Result", "Result" + " >>> " + "roadsectionid : " + data.get("roadsectionid"));
+				Log.d("XML Parsing Result", "Result" + " >>> " + "avgspeed : " + data.get("avgspeed"));
+				Log.d("XML Parsing Result", "Result" + " >>> " + "startnodeid : " + data.get("startnodeid"));
+				Log.d("XML Parsing Result", "Result" + " >>> " + "roadnametext : " + data.get("roadnametext"));
+				Log.d("XML Parsing Result", "Result" + " >>> " + "traveltime : " + data.get("traveltime"));
+				Log.d("XML Parsing Result", "Result" + " >>> " + "endnodeid : " + data.get("endnodeid"));
+				Log.d("============" + (i + 1)+ "==========", "END  >>>>>>>>>>>>>>>>>>>>");
+			}
+		}
+	};
+	
+	/*
 	class XmlParser implements Runnable {
 		private List<TrafficInfoVO> dataList = null;
 		
@@ -119,4 +148,5 @@ public class TrafficInfoActivity extends Activity {
 		}
 		
 	}
+	*/
 }
