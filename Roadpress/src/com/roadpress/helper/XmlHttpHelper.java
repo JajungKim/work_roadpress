@@ -1,4 +1,4 @@
-package com.roadpress;
+package com.roadpress.helper;
 
 import org.xmlpull.v1.XmlPullParser;
 
@@ -8,6 +8,16 @@ public class XmlHttpHelper implements Runnable{
 	String errormessage;
 	int errorcode;
 	XmlPullParser parser;
+	
+	private static final String HOST_ADDR = "openapi.its.go.kr";
+	private static final String HOST_PORT = "8080";
+	private static final String URI_DIR   = "/api/";
+	
+	public static final String API_TRAFFICINFO       = URI_DIR + "TrafficInfo";      //교통정보
+	public static final String API_EVENTIDENTITY     = URI_DIR + "EventIdentity";    //공사정보
+	public static final String API_INCIDENTIDENTITY  = URI_DIR + "IncidentIdentity"; //사고정보
+	public static final String API_CCTVINFO          = URI_DIR + "CCTVInfo";         //CCTV 영상 정보
+	
 	
 	enum XmlTag {
 		datacount(0),
@@ -77,7 +87,7 @@ public class XmlHttpHelper implements Runnable{
 			}
 		});
 		
-		xmlHelper.run();
+		//xmlHelper.run();
 	}
 	
 }
