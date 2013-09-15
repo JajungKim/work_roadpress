@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        >
+	        <Button
+		        android:id="@+id/btn_open"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Open" />
+		
+		    <Button
+		        android:id="@+id/btn_close"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Close" />
+		
+		    <Button
+		        android:id="@+id/btn_list"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Get List" />
+		    
+		    <Button
+		        android:id="@+id/btn_insert_item"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Insert Item" />
+		    
+		    <Button
+		        android:id="@+id/btn_delete_item"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="delete Item" />
+	   	</LinearLayout>
+   	</HorizontalScrollView>
+	<ListView 
+	    android:id="@android:id/list"
+	    android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		/>    
+</LinearLayout>
